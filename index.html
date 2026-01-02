@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif;}
+body{background:radial-gradient(circle at top,#020617,#000);color:#e5e7eb;overflow-x:hidden;position:relative;}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;width:100%;top:0;display:flex;justify-content:center;padding:1rem 2rem;backdrop-filter:blur(12px);background:rgba(2,6,23,0.6);z-index:999;animation:navSlide 1s ease forwards;}
+@keyframes navSlide{from{transform:translateY(-100%);}to{transform:translateY(0);}}
+nav ul{display:flex;gap:2rem;list-style:none;justify-content:center;align-items:center;}
+nav li{position:relative;}
+nav li::after{content:"";position:absolute;bottom:-4px;left:50%;width:0;height:2px;background:#38bdf8;transition:all .3s ease;transform:translateX(-50%);}
+nav li:hover::after,nav li.active::after{width:100%;}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;}
+.hero h1{font-size:4rem;background:linear-gradient(90deg,#38bdf8,#818cf8,#38bdf8);background-size:200% 200%;-webkit-background-clip:text;color:transparent;animation:gradientMove 6s infinite linear;z-index:2;}
+@keyframes gradientMove{from{background-position:0% 50%;}to{background-position:200% 50%;}}
+.hero p{margin-top:1rem;opacity:0.8;animation:fadeUp 1.5s ease forwards;z-index:2;}
+.hero button{margin-top:2rem;padding:1rem 2rem;border-radius:999px;border:none;background:#38bdf8;cursor:pointer;font-weight:bold;transition:transform .2s,box-shadow .2s;z-index:2;}
+.hero button:hover{transform:scale(1.1);box-shadow:0 0 30px #38bdf8;}
+.orb{position:absolute;width:200px;height:200px;background:radial-gradient(circle,#38bdf8,transparent);border-radius:50%;filter:blur(60px);animation:float 8s infinite alternate ease-in-out;z-index:1;}
+.orb.one{top:20%;left:10%;}
+.orb.two{bottom:20%;right:10%;animation-delay:2s;}
+@keyframes float{from{transform:translateY(0);}to{transform:translateY(-80px);}}
+.geo-bg{position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none;z-index:0;display:flex;flex-wrap:wrap;}
+.geo-bg div{width:40px;height:40px;margin:20px;background:rgba(56,189,248,0.2);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);animation:geoFloat 10s infinite alternate;}
+.geo-bg div:nth-child(2n){animation-delay:2s;}
+.geo-bg div:nth-child(3n){animation-delay:4s;}
+@keyframes geoFloat{from{transform:translateY(0) rotate(0deg);}to{transform:translateY(-100px) rotate(180deg);}}
+section{opacity:0;transform:translateY(60px);transition:all 0.8s ease;padding:7rem 2rem;max-width:1200px;margin:auto;scroll-margin-top:140px;}
+section.show{opacity:1;transform:translateY(0);}
+section h2{font-size:2.8rem;margin-bottom:1rem;}
+section p{max-width:800px;opacity:.8;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:3rem;}
+.card{background:rgba(255,255,255,0.03);border-radius:20px;padding:2rem;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);transition:transform .3s,box-shadow .3s;cursor:pointer;}
+.card:hover{transform:rotateX(10deg) rotateY(-10deg) scale(1.05);box-shadow:0 30px 60px rgba(0,0,0,0.6);}
+footer{padding:3rem;text-align:center;opacity:.5;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="#home" data-scroll>Home</a></li>
+    <li><a href="#about" data-scroll>About</a></li>
+    <li><a href="#doing" data-scroll>What I'm Doing</a></li>
+  </ul>
+</nav>
+
+<div class="hero" id="home">
+  <div class="geo-bg">
+    <div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div>
+    <h1>Welcome to My World</h1>
+    <p>Interactive. Animated. Built different.</p>
+    <button onclick="scrollToSection('doing')">Enter</button>
+  </div>
+</div>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non semper ex. Aenean lacinia porta venenatis. Maecenas dapibus sapien arcu, sit amet euismod justo faucibus nec. Donec sed pretium lorem, sed tincidunt eros. Curabitur id purus ut felis aliquet tristique. Nullam scelerisque erat elit, eu volutpat ipsum posuere eu. In ultricies bibendum ante id tincidunt. Sed interdum quis sem et sollicitudin. Etiam ac nisi eu augue iaculis mollis. Nulla ac aliquet felis. Donec vulputate mauris posuere dolor pharetra ultricies et ut risus. Nam eget ornare purus, eget convallis ex.
+
+Sed pretium nisi id nisl suscipit, eget vestibulum turpis dignissim. Vivamus sit amet arcu ut dolor elementum consequat et sagittis sapien. Suspendisse id velit et turpis accumsan volutpat vel ultrices ipsum. Phasellus sit amet viverra ipsum. Pellentesque consectetur, elit a ullamcorper porttitor, lacus dui finibus mi, a ultrices neque sapien nec mauris. Nam fermentum venenatis ante, vitae faucibus ex tempor at. Maecenas vitae consequat orci, eget faucibus ligula. Morbi eget dolor neque. Nullam eu lorem non sapien aliquet facilisis. Duis tortor elit, ultrices et molestie eu, posuere nec tellus. Aenean blandit turpis nunc, a mollis purus maximus eget.
+
+Curabitur id vestibulum eros, sit amet fermentum mauris. Curabitur ornare metus ipsum, non ornare tortor vehicula eu. Sed efficitur blandit eleifend. Donec id fringilla nibh. Pellentesque luctus ac magna in volutpat. Morbi vehicula nunc a arcu ullamcorper, at scelerisque quam cursus. Maecenas lacinia tellus tellus. Donec posuere leo eget lobortis maximus. Mauris sed elit ultrices, pellentesque eros eu, ultrices justo. Maecenas urna libero, auctor quis libero vitae, tempor accumsan quam. Aenean sagittis tellus eget libero ultricies, non ullamcorper ipsum auctor. Nullam fringilla pellentesque tortor, sit amet finibus ante posuere rhoncus. Nulla sollicitudin elit id enim bibendum, eget mollis tellus scelerisque. In massa dui, sollicitudin eget interdum vitae, viverra et mauris.</p>
+</section>
+
+<section id="doing">
+  <h2>What I'm Doing</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non semper ex. Aenean lacinia porta venenatis. Maecenas dapibus sapien arcu, sit amet euismod justo faucibus nec. Donec sed pretium lorem, sed tincidunt eros. Curabitur id purus ut felis aliquet tristique. Nullam scelerisque erat elit, eu volutpat ipsum posuere eu. In ultricies bibendum ante id tincidunt. Sed interdum quis sem et sollicitudin. Etiam ac nisi eu augue iaculis mollis. Nulla ac aliquet felis. Donec vulputate mauris posuere dolor pharetra ultricies et ut risus. Nam eget ornare purus, eget convallis ex.
+
+Sed pretium nisi id nisl suscipit, eget vestibulum turpis dignissim. Vivamus sit amet arcu ut dolor elementum consequat et sagittis sapien. Suspendisse id velit et turpis accumsan volutpat vel ultrices ipsum. Phasellus sit amet viverra ipsum. Pellentesque consectetur, elit a ullamcorper porttitor, lacus dui finibus mi, a ultrices neque sapien nec mauris. Nam fermentum venenatis ante, vitae faucibus ex tempor at. Maecenas vitae consequat orci, eget faucibus ligula. Morbi eget dolor neque. Nullam eu lorem non sapien aliquet facilisis. Duis tortor elit, ultrices et molestie eu, posuere nec tellus. Aenean blandit turpis nunc, a mollis purus maximus eget.
+
+Curabitur id vestibulum eros, sit amet fermentum mauris. Curabitur ornare metus ipsum, non ornare tortor vehicula eu. Sed efficitur blandit eleifend. Donec id fringilla nibh. Pellentesque luctus ac magna in volutpat. Morbi vehicula nunc a arcu ullamcorper, at scelerisque quam cursus. Maecenas lacinia tellus tellus. Donec posuere leo eget lobortis maximus. Mauris sed elit ultrices, pellentesque eros eu, ultrices justo. Maecenas urna libero, auctor quis libero vitae, tempor accumsan quam. Aenean sagittis tellus eget libero ultricies, non ullamcorper ipsum auctor. Nullam fringilla pellentesque tortor, sit amet finibus ante posuere rhoncus. Nulla sollicitudin elit id enim bibendum, eget mollis tellus scelerisque. In massa dui, sollicitudin eget interdum vitae, viverra et mauris.</p>
+</section>
+
+<footer>© 2025 You — under the copyrights of the avi federation</footer>
+
+<script>
+const navLinks = document.querySelectorAll('nav li a');
+const sections = document.querySelectorAll('section, .hero');
+
+// Smooth scroll function
+function scrollToSection(id) {
+  const target = document.getElementById(id);
+  if(!target) return;
+  const yOffset = -120; // navbar height
+  const y = target.getBoundingClientRect().top + window.scrollY + yOffset;
+  window.scrollTo({top: y, behavior:'smooth'});
+}
+
+// Update active nav based on visible section
+function updateActiveLink() {
+  const offset = 140; // height of navbar
+  let current = 'home';
+
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top <= offset && rect.bottom > offset) {
+      current = sec.id;
+    }
+  });
+
+  navLinks.forEach(a => {
+    a.parentElement.classList.toggle('active', a.getAttribute('href') === `#${current}`);
+  });
+}
+
+// Scroll reveal for sections
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
+}, {threshold:0.2});
+document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+
+// 3D card tilt
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    const rx = (y / r.height - 0.5) * 15;
+    const ry = (x / r.width - 0.5) * -15;
+    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.05)`;
+  });
+  card.addEventListener('mouseleave', () => card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)');
+});
+
+// Event listeners
+window.addEventListener('scroll', updateActiveLink);
+window.addEventListener('load', updateActiveLink);
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    scrollToSection(a.getAttribute('href').substring(1));
+  });
+});
+</script>
+</body>
+</html>
